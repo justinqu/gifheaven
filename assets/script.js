@@ -1,13 +1,12 @@
 $(function(){
    populateButtons(searchArray, 'searchButton', "#buttonsArea");
-   console.log("page Loaded") 
 })
 
 var searchArray = ["Dog", "Cat", "Bird"];
 
 function populateButtons(searchArray, classToAdd, areaToAddTo){
     $(areaToAddTo).empty();
-    for(var i=0;i<searchArray.length;i++){
+    for(var i=0; i<searchArray.length;i++){
         var a =$('<button>');
         a.addClass(classToAdd);
         a.attr('data-type', searchArray[i])
@@ -45,17 +44,19 @@ $(document).on('click', '.searchButton', function(){
 $(document).on('click', '.searchImage', function(){
     var state = $(this).attr('data-state');
     if (state =='still'){
-        $(this).attr('scr', $(this).data('animated'));
+        $(this).attr('src', $(this).data('animated'));
         $(this).attr('data-state', 'animated');
     } else{
-        $(this).attr('scr', $(this).data('still'));
+        $(this).attr('src', $(this).data('still'));
         $(this).attr('data-state', 'still');
     }
 })
 
 $("#addSearch").on('click',function(){
+    event.preventDefault();
+    console.log("test")
     var newSearch = $('input').eq(0).val();
     searchArray.push(newSearch);
     populateButtons(searchArray, "searchButton", "#buttonsArea");
-    return false;
+
 })
